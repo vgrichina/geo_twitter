@@ -14,6 +14,7 @@
                     var map = new GMap2(document.getElementById('map'));
                     var vinnitsa = new GLatLng(49.2325477, 28.4744695);
                     map.setCenter(vinnitsa, 8);
+                    map.addControl(new GLargeMapControl());
                 });
             });
         </script>
