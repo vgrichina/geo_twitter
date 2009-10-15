@@ -20,7 +20,22 @@
         </script>
     </head>
     <body>
-        <div id="map" style="width:800px; height:600px">
+        <div class="form">
+            <form action="" name="twitter">
+                <p>
+                    <label>twitter id:</label>
+                    <input type="text" id="name" name="name" value=""/>
+                </p>
+                <p>
+                    <label>password:</label>
+                    <input type="password" id="pword" name="pword" value=""/>
+                </p>
+                <p class="submit">
+                    <input type="submit" value="Map my friends!">
+                </p>
+            </form>
+        </div>
+        <div id="map">
         </div>
     </body>
 </html>
