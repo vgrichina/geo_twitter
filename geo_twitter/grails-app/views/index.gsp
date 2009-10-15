@@ -26,10 +26,6 @@
                     <label>twitter id:</label>
                     <input type="text" id="name" name="name" value=""/>
                 </p>
-                <p>
-                    <label>password:</label>
-                    <input type="password" id="pword" name="pword" value=""/>
-                </p>
                 <p class="submit">
                     <input type="submit" value="Map my friends!">
                 </p>
