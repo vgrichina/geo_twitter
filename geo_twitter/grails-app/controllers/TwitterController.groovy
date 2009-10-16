@@ -2,7 +2,7 @@ import grails.converters.*
 
 class TwitterController {
     // Google Maps API key
-    static def API_KEY = "ABQIAAAAbsJwNuAmOaJE18sONZ3oXxTwM0brOpm-All5BF6PoaKBxRWWERSjfCIoGnJVNtoB-VG3WgeT9aH43g"
+    static def API_KEY = "ABQIAAAAbsJwNuAmOaJE18sONZ3oXxS6PDgnYWzBubbuuLvpkz8oZ7SkXhS0ia-cXa80LYOn9MIu-oBLdGR2AQ"
 
     // TwitterService instance will be injected into this variable by Spring
     def twitterService
