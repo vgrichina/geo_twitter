@@ -35,10 +35,11 @@ grails.enable.native2ascii = true
 // enable GSP preprocessing: replace head -> g:captureHead, title -> g:captureTitle, meta -> g:captureMeta, body -> g:captureBody
 grails.views.gsp.sitemesh.preprocess = true
 
-// set per-environment serverURL stem for creating absolute links
+geo_twitter.googleMapsKey = "ABQIAAAAbsJwNuAmOaJE18sONZ3oXxTwM0brOpm-All5BF6PoaKBxRWWERSjfCIoGnJVNtoB-VG3WgeT9aH43g"
 environments {
     production {
-        grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "http://demo.componentix.com/${appName}"
+        geo_twitter.googleMapsKey = "ABQIAAAAbsJwNuAmOaJE18sONZ3oXxS6PDgnYWzBubbuuLvpkz8oZ7SkXhS0ia-cXa80LYOn9MIu-oBLdGR2AQ"
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"

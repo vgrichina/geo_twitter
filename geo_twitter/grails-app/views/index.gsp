@@ -3,7 +3,7 @@
         <title>Welcome to GeoTwitter!</title>
         <meta name="layout" content="main" />
 
-        <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+        <script src="http://www.google.com/jsapi?key=${grailsApplication.config.geo_twitter.googleMapsKey}" type="text/javascript"></script>
 
         <script type="text/javascript">
             google.load("maps", "2.x");

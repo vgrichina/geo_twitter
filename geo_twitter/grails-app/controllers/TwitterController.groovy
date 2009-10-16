@@ -1,8 +1,11 @@
 import grails.converters.*
 
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
+
+
 class TwitterController {
     // Google Maps API key
-    static def API_KEY = "ABQIAAAAbsJwNuAmOaJE18sONZ3oXxS6PDgnYWzBubbuuLvpkz8oZ7SkXhS0ia-cXa80LYOn9MIu-oBLdGR2AQ"
+    def mapsApiKey = ConfigurationHolder.config.geo_twitter.googleMapsKey 
 
     // TwitterService instance will be injected into this variable by Spring
     def twitterService
@@ -46,7 +49,7 @@ class TwitterController {
                 def encodedLocation = URLEncoder.encode(location)
                 // Call web service by retrieving URL content
                 def response = 
-                    "http://maps.google.com/maps/geo?q=${encodedLocation}&output=xml&key=${API_KEY}".toURL().getText()
+                    "http://maps.google.com/maps/geo?q=${encodedLocation}&output=xml&key=${mapsApiKey}".toURL().getText()
                 // Parse response XML
                 def root = new XmlSlurper().parseText(response)
                 if (root.Response.Placemark.size() == 1) {
