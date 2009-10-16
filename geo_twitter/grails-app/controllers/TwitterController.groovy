@@ -53,7 +53,7 @@ class TwitterController {
                     def coords = root.Response.Placemark.Point.coordinates.text()
                     def parts = coords.split(",")
                     if (parts.size() > 1) {
-                        return [latitude: parts[1], longitude: parts[0]]
+                        return [latitude: parts[1] as Double, longitude: parts[0] as Double]
                     }
                 }
             }
