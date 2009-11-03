@@ -1,14 +1,10 @@
-import grails.converters.*
-
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
-
+import grails.converters.JSON
 
 class TwitterController {
-    // Google Maps API key
-    def mapsApiKey = ConfigurationHolder.config.geo_twitter.googleMapsKey 
-
     // TwitterService instance will be injected into this variable by Spring
     def twitterService
+    // LocationService instance used to lookup location coordinates
+    def locationService
 
     def friendsJson = {
         // Get friends of given user
@@ -28,41 +24,8 @@ class TwitterController {
                 pictureUrl: it.profileImageUrl as String,
                 bio: it.description,
                 status: it.status?.text,
-                coords: getCoordsFromLocation(it.location)
+                coords: locationService.getCoordsFromLocation(it.location)
             ]    
         }
-    }
-    
-    /**
-     * This method gets coordinates on map for given location string.
-     */
-    private def getCoordsFromLocation(String location) {
-        if (location) {
-            if (location.contains("iPhone:")) {
-                // There can be coords specified in location
-                // like iPhone: 39.035248,-77.138687
-                location = location.replace("iPhone: ", "")
-                def parts = location.split(",")
-                return [latitude: parts[0], longitude: parts[1]]
-            } else {
-                // Encode location as URL
-                def encodedLocation = URLEncoder.encode(location)
-                // Call web service by retrieving URL content
-                def response = 
-                    "http://maps.google.com/maps/geo?q=${encodedLocation}&output=xml&key=${mapsApiKey}".toURL().getText()
-                // Parse response XML
-                def root = new XmlSlurper().parseText(response)
-                if (root.Response.Placemark.size() == 1) {
-                    def coords = root.Response.Placemark.Point.coordinates.text()
-                    def parts = coords.split(",")
-                    if (parts.size() > 1) {
-                        return [latitude: parts[1] as Double, longitude: parts[0] as Double]
-                    }
-                }
-            }
-        }
-
-        // No coordinates are determined
-        return null
     }
 }
