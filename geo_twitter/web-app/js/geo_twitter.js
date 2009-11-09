@@ -14,18 +14,25 @@ google.setOnLoadCallback(function() {
             $.getJSON(form.attr("action") + "?" + form.serialize(), function (data) {
                 // Clear all markers
                 map.clearOverlays();
-                // Loop through friends list and add markers to map
-                $.each(data, function (i, item) {
-                    if (item.coords) {
-                        var marker = new GMarker(new GLatLng(item.coords.latitude, item.coords.longitude));
-                        map.addOverlay(marker);
-                        var popup = '<img style="width: 48px; height:48px;" src="' + item.pictureUrl + '">' + 
+                // Loop through friends list grouped by locations and add markers to map
+                console.log(data);
+                $.each(data, function (i, friendsList) {
+                    console.log(friendsList);
+                    // Add marker to map
+                    var marker = new GMarker(new GLatLng(friendsList[0].coords.latitude, friendsList[0].coords.longitude));
+                    map.addOverlay(marker);
+                    // Construct popup HTML
+                    var popup = '<ul>'
+                    $.each(friendsList, function (i, item) {
+                        popup += '<li><img style="width: 48px; height:48px;" src="' + item.pictureUrl + '">' + 
                             item.name + ' (' + item.screenName + ') <br>' + 
                             item.bio + '<br>' + item.status;
-                        GEvent.addListener(marker, "click", function() {
-                            marker.openInfoWindowHtml(popup);
-                        });
-                    }
+                    });
+                    popup += "</ul>";
+                    // Add popup handler
+                    GEvent.addListener(marker, "click", function() {
+                        marker.openInfoWindowHtml(popup);
+                    });
                 });
             });
             // Indicate that form should not actually be submitted

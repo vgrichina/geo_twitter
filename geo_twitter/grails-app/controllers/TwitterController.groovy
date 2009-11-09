@@ -17,6 +17,7 @@ class TwitterController {
         def friends = twitterService.getFriends(params.name)
         
         // Return only the needed fields for each user and retrieve coordinates for location
+        // Results are also grouped by the coords
         friends.collect { it ->
             [
                 screenName: it.screenName,
@@ -26,6 +27,6 @@ class TwitterController {
                 status: it.status?.text,
                 coords: locationService.getCoordsFromLocation(it.location)
             ]    
-        }
+        }.findAll { it.coords != null }.groupBy { it.coords }.collect { it.value }
     }
 }
