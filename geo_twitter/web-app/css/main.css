@@ -30,3 +30,36 @@ body {
 .form .submit {
     padding-left: 7em;
 }
+
+ul.friendsList {
+    list-style-type: none;
+    overflow: auto;
+    max-height: 20em;
+}
+
+ul.friendsList li {
+    padding-bottom: 1.5em;
+}
+
+.friendsList img {
+    float: left;
+    margin-right: 1em;
+    width: 48px; 
+    height: 48px;  
+}
+
+.friendsList .friendInfo {
+    min-height: 48px;
+}
+
+.friendsList .name {
+    font-weight: bold;
+}
+
+.friendsList .bio {
+    color: gray;
+}
+
+.friendsList .message {
+    margin-top: 0.5em;
+}

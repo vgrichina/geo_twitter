@@ -15,18 +15,22 @@ google.setOnLoadCallback(function() {
                 // Clear all markers
                 map.clearOverlays();
                 // Loop through friends list grouped by locations and add markers to map
-                console.log(data);
                 $.each(data, function (i, friendsList) {
-                    console.log(friendsList);
                     // Add marker to map
                     var marker = new GMarker(new GLatLng(friendsList[0].coords.latitude, friendsList[0].coords.longitude));
                     map.addOverlay(marker);
                     // Construct popup HTML
-                    var popup = '<ul>'
+                    var popup = '<ul class="friendsList">'
                     $.each(friendsList, function (i, item) {
-                        popup += '<li><img style="width: 48px; height:48px;" src="' + item.pictureUrl + '">' + 
-                            item.name + ' (' + item.screenName + ') <br>' + 
-                            item.bio + '<br>' + item.status;
+                        popup += 
+                        '<li>' + 
+                            '<div class="friendInfo">' + 
+                                '<img src="' + item.pictureUrl + '">' + 
+                                '<div class="name">' + item.name + ' (' + item.screenName + ') </div>' + 
+                                '<div class="bio">' + item.bio + '</div>' +
+                            '</div>' +
+                            '<div class="message">' + item.status + '</div>' +
+                        '</li>';
                     });
                     popup += "</ul>";
                     // Add popup handler
